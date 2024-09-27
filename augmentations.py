@@ -39,3 +39,9 @@ def pad_trunc(aud, max_ms):
       sig = torch.cat((pad_begin, sig, pad_end), 1)
       
     return (sig, sr)
+
+def time_shift(aud, shift_limit):
+    sig,sr = aud
+    _, sig_len = sig.shape
+    shift_amt = int(random.random() * shift_limit * sig_len)
+    return (sig.roll(shift_amt), sr)
